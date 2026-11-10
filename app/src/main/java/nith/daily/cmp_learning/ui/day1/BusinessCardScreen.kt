@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -32,11 +33,12 @@ import androidx.compose.ui.unit.sp
 import nith.daily.cmp_learning.R
 
 @Composable
-fun BusinessCardScreen() {
+fun BusinessCardScreen(innerPadding: PaddingValues) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFF84B29A))
+            .padding(innerPadding)
             .padding(16.dp)
     ) {
         Column(

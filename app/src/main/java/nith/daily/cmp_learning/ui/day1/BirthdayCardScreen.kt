@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
@@ -19,9 +20,9 @@ import nith.daily.cmp_learning.R
 
 
 @Composable
-fun BirthdayCardScreen(message: String, from: String, modifier: Modifier = Modifier) {
+fun BirthdayCardScreen(message: String, from: String, modifier: Modifier = Modifier, innerPadding: PaddingValues) {
     val image = painterResource(R.drawable.androidparty)
-    Box(modifier) {
+    Box(modifier.padding(innerPadding)) {
         Image(
             painter = image,
             contentDescription = null,

@@ -2,6 +2,7 @@ package nith.daily.cmp_learning.ui.day1
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
@@ -15,9 +16,9 @@ import androidx.compose.ui.unit.sp
 import nith.daily.cmp_learning.R
 
 @Composable
-fun ComposeArticleScreen(modifier: Modifier = Modifier) {
+fun ComposeArticleScreen(modifier: Modifier = Modifier, innerPadding: PaddingValues) {
     val image = painterResource(R.drawable.bg_compose_background)
-    Column(modifier) {
+    Column(modifier.padding(innerPadding)) {
         Image(
             painter = image,
             contentDescription = null,

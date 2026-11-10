@@ -3,6 +3,7 @@ package nith.daily.cmp_learning.ui.day1
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
@@ -17,9 +18,10 @@ import androidx.compose.ui.unit.sp
 import nith.daily.cmp_learning.R
 
 @Composable
-fun TaskCompletedScreen() {
+fun TaskCompletedScreen(innerPadding: PaddingValues) {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize()
+            .padding(innerPadding),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {

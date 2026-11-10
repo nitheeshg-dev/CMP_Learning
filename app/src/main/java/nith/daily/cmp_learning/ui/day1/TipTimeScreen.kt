@@ -4,6 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -38,7 +39,7 @@ import org.jetbrains.annotations.VisibleForTesting
 import java.text.NumberFormat
 
 @Composable
-fun TipTimeScreen() {
+fun TipTimeScreen(innerPadding: PaddingValues) {
     var amountInput by remember { mutableStateOf("") }
     var tipInput by remember { mutableStateOf("") }
     var roundUp by remember { mutableStateOf(false) }
@@ -49,6 +50,7 @@ fun TipTimeScreen() {
     Column(
         modifier = Modifier
             .statusBarsPadding()
+            .padding(innerPadding)
             .padding(horizontal = 40.dp)
             .verticalScroll(rememberScrollState())
             .safeDrawingPadding(),
