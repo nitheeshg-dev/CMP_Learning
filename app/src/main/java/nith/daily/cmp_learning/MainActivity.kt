@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         ArtSpaceScreen(innerPadding = innerPadding)
 //                        ComposeTutorialDesign()
-                        TipTimeScreen(innerPadding)
+//                        TipTimeScreen(innerPadding)
                        /* BirthdayCardScreen(
                             stringResource(R.string.happy_birthday_text),
                             stringResource(R.string.from_text),
