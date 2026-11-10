@@ -12,6 +12,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import nith.daily.cmp_learning.ui.day1.ArtSpaceScreen
 import nith.daily.cmp_learning.ui.day1.BirthdayCardScreen
 import nith.daily.cmp_learning.ui.day1.BusinessCardScreen
 import nith.daily.cmp_learning.ui.day1.ComposeArticleScreen
@@ -31,6 +32,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.background
                     ) {
+                        ArtSpaceScreen(innerPadding = innerPadding)
 //                        ComposeTutorialDesign()
                         TipTimeScreen(innerPadding)
                        /* BirthdayCardScreen(
@@ -55,6 +57,8 @@ fun CmpLearningPreview() {
         TaskCompletedScreen(PaddingValues())
         BusinessCardScreen(PaddingValues())
         ComposeQuadrantScreen(PaddingValues())*/
-        TipTimeScreen(PaddingValues())
+//        TipTimeScreen(PaddingValues())
+        ArtSpaceScreen(PaddingValues())
     }
+
 }
