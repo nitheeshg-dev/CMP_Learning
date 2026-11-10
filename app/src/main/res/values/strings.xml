@@ -12,5 +12,7 @@
     <string name="tip_amount">Tip Amount: %s</string>
     <string name="how_was_the_service">Tip Percentage</string>
     <string name="round_up_tip">Round up tip?</string>
+    <string name="years_old">%s years old</string>
+    <string name="woof_text">Woof</string>
 
 </resources>

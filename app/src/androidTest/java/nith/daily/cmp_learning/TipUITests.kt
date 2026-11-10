@@ -10,6 +10,7 @@ import nith.daily.cmp_learning.ui.theme.CMP_LearningTheme
 import org.junit.Rule
 import org.junit.Test
 import java.text.NumberFormat
+import nith.daily.cmp_learning.ui.day1.TipTimeScreen
 
 class TipUITests {
     @get:Rule
@@ -20,7 +21,7 @@ class TipUITests {
         composeTestRule.setContent {
             CMP_LearningTheme {
                 Surface (modifier = Modifier.fillMaxSize()){
-                    TipTimeLayout()
+                    TipTimeScreen()
                 }
             }
         }
