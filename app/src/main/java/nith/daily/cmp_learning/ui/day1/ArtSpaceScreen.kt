@@ -34,13 +34,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import nith.daily.cmp_learning.R
-
-data class ArtworkDetails(
-    val imageRes: Int,
-    val title: String,
-    val artist: String,
-    val year: String
-)
+import nith.daily.cmp_learning.data.ArtworkDetails
 
 @Composable
 fun ArtSpaceScreen(innerPadding: PaddingValues) {

@@ -30,15 +30,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import nith.daily.cmp_learning.R
+import nith.daily.cmp_learning.data.Day
 import nith.daily.cmp_learning.ui.theme.DaysAppTheme
 
-
-data class Day(
-    val day: Int,
-    val title: Int,
-    val description: Int,
-    val image: Int
-)
 
 val days = listOf(
     Day(

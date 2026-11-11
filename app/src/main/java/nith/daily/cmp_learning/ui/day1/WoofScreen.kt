@@ -42,6 +42,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import nith.daily.cmp_learning.R
+import nith.daily.cmp_learning.data.Dog
 
 @Composable
 fun WoofScreen(innerPadding: PaddingValues) {
@@ -130,13 +131,6 @@ fun WoofTopAppBar(modifier: Modifier = Modifier) {
         modifier = modifier
     )
 }
-data class Dog(
-    val name: String,
-    val age: Int,
-    val imageResourceId: Int,
-    val description: String
-)
-
 
 @Composable
 fun DogIcon(

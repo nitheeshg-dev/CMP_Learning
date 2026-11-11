@@ -33,14 +33,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import nith.daily.cmp_learning.R
+import nith.daily.cmp_learning.data.Hero
 import nith.daily.cmp_learning.ui.theme.SuperheroesTheme
 
-data class Hero(
-    val nameRes:Int,
-    val descriptionRes:Int,
-    val imageRes:Int
 
-)
 @Composable
 fun SuperHeroesScreen(innerPadding: PaddingValues) {
 
