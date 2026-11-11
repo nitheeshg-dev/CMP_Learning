@@ -252,3 +252,47 @@ fun DaysAppTheme(
         content = content
     )
 }
+
+private val DarkColorSchemeCourses = darkColorScheme(
+    primary = primary_dark,
+    secondary = secondary_dark,
+    tertiary = tertiary_dark
+)
+
+private val LightColorSchemeCourses= lightColorScheme(
+    primary = primary_light,
+    secondary = secondary_light,
+    tertiary = tertiary_light
+)
+
+@Composable
+fun CoursesTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    // Dynamic color is available on Android 12+
+    dynamicColor: Boolean = false,
+    content: @Composable () -> Unit
+) {
+    val colorScheme = when {
+        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+            val context = LocalContext.current
+            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+        }
+
+        darkTheme -> DarkColorSchemeCourses
+        else -> LightColorSchemeCourses
+    }
+    val view = LocalView.current
+    if (!view.isInEditMode) {
+        SideEffect {
+            val window = (view.context as Activity).window
+            window.statusBarColor = colorScheme.primary.toArgb()
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+        }
+    }
+
+    MaterialTheme(
+        colorScheme = colorScheme,
+        typography = Typography,
+        content = content
+    )
+}

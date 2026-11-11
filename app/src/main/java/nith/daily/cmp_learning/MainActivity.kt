@@ -5,24 +5,17 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import nith.daily.cmp_learning.ui.day1.ArtSpaceScreen
-import nith.daily.cmp_learning.ui.day1.BirthdayCardScreen
-import nith.daily.cmp_learning.ui.day2.SuperHeroTopBar
-import nith.daily.cmp_learning.ui.day2.SuperHeroesScreen
 import nith.daily.cmp_learning.ui.day1.WoofScreen
 import nith.daily.cmp_learning.ui.day1.WoofTopAppBar
 import nith.daily.cmp_learning.ui.day2.AffirmationsApp
-import nith.daily.cmp_learning.ui.day2.DataSourceScreen
 import nith.daily.cmp_learning.ui.day2.DaysAppScreen
+import nith.daily.cmp_learning.ui.day2.GridViewScreen
+import nith.daily.cmp_learning.ui.day2.SuperHeroTopBar
+import nith.daily.cmp_learning.ui.day2.SuperHeroesScreen
 import nith.daily.cmp_learning.ui.day2.daysTopBar
 import nith.daily.cmp_learning.ui.theme.CMP_LearningTheme
 import nith.daily.cmp_learning.ui.theme.DaysAppTheme
@@ -34,10 +27,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            GridViewScreen()
 //            DaysScreenCall()
 //            SupperHeroScreenCall()
 //            WoofScreenCall()
-            BasicLearningTheme()
+//            BasicLearningTheme()
         }
     }
 }
