@@ -218,3 +218,37 @@ fun SuperheroesTheme(
         content = content
     )
 }
+
+@Composable
+fun DaysAppTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    // Dynamic color is available on Android 12+
+    // Dynamic color in this app is turned off for learning purposes
+    dynamicColor: Boolean = false,
+    content: @Composable () -> Unit
+) {
+    val colorScheme = when {
+        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+            val context = LocalContext.current
+            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+        }
+
+        darkTheme -> DarkColors
+        else -> LightColors
+    }
+    val view = LocalView.current
+    if (!view.isInEditMode) {
+        SideEffect {
+            setUpEdgeToEdge(view, darkTheme)
+        }
+    }
+    val shapes = Shapes(
+        small = RoundedCornerShape(50.dp),
+    )
+    MaterialTheme(
+        colorScheme = colorScheme,
+        typography = TypographyDays,
+        shapes = shapes,
+        content = content
+    )
+}

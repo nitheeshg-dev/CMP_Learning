@@ -1,4 +1,4 @@
-package nith.daily.cmp_learning.ui.day1
+package nith.daily.cmp_learning.ui.day2
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes

@@ -4,32 +4,26 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import nith.daily.cmp_learning.ui.day1.ArtSpaceScreen
 import nith.daily.cmp_learning.ui.day1.BirthdayCardScreen
-import nith.daily.cmp_learning.ui.day1.SuperHeroTopBar
-import nith.daily.cmp_learning.ui.day1.SuperHeroesScreen
+import nith.daily.cmp_learning.ui.day2.SuperHeroTopBar
+import nith.daily.cmp_learning.ui.day2.SuperHeroesScreen
 import nith.daily.cmp_learning.ui.day1.WoofScreen
 import nith.daily.cmp_learning.ui.day1.WoofTopAppBar
+import nith.daily.cmp_learning.ui.day2.DaysAppScreen
+import nith.daily.cmp_learning.ui.day2.daysTopBar
 import nith.daily.cmp_learning.ui.theme.CMP_LearningTheme
+import nith.daily.cmp_learning.ui.theme.DaysAppTheme
 import nith.daily.cmp_learning.ui.theme.SuperheroesTheme
 import nith.daily.cmp_learning.ui.theme.WoofTheme
 
@@ -38,7 +32,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            SupperHeroScreenCall()
+            DaysScreenCall()
+//            SupperHeroScreenCall()
 //            WoofScreenCall()
 //            BasicLearningTheme()
         }
@@ -56,6 +51,20 @@ fun WoofScreenCall(){
             WoofScreen(it)
         }
     }
+}
+
+@Composable
+fun DaysScreenCall() {
+    DaysAppTheme(darkTheme = false, dynamicColor = true) {
+        Scaffold(
+            topBar = {
+                daysTopBar()
+            }
+        ) { it ->
+            DaysAppScreen(it)
+        }
+    }
+
 }
 
 @Composable
@@ -106,14 +115,6 @@ fun CmpLearningPreview() {
 //        WoofScreenChange()
     }*/
 
-    WoofTheme(darkTheme = false, dynamicColor = true) {
-        Scaffold(
-            topBar = {
-                WoofTopAppBar()
-            }
-        ) { it ->
-            WoofScreen(it)
-        }
-    }
+    WoofScreenCall()
 
 }
