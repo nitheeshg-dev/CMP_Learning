@@ -6,12 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,7 +22,15 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import nith.daily.cmp_learning.ui.day1.ArtSpaceScreen
+import nith.daily.cmp_learning.ui.day1.BirthdayCardScreen
+import nith.daily.cmp_learning.ui.day1.SuperHeroTopBar
+import nith.daily.cmp_learning.ui.day1.SuperHeroesScreen
 import nith.daily.cmp_learning.ui.day1.WoofScreen
+import nith.daily.cmp_learning.ui.day1.WoofTopAppBar
+import nith.daily.cmp_learning.ui.theme.CMP_LearningTheme
+import nith.daily.cmp_learning.ui.theme.SuperheroesTheme
 import nith.daily.cmp_learning.ui.theme.WoofTheme
 
 class MainActivity : ComponentActivity() {
@@ -28,62 +38,59 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            WoofTheme {
-                Scaffold(
-                    topBar = {
-                        WoofTopAppBar()
-                    }
-                ) { it ->
-                    WoofScreen(it)
-                }
-            }
-
-            /*CMP_LearningTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Surface(
-                        modifier = Modifier.fillMaxSize(),
-                        color = MaterialTheme.colorScheme.background
-                    ) {
-                        ArtSpaceScreen(innerPadding = innerPadding)
-//                        ComposeTutorialDesign()
-//                        TipTimeScreen(innerPadding)
-                       *//* BirthdayCardScreen(
-                            stringResource(R.string.happy_birthday_text),
-                            stringResource(R.string.from_text),
-                            modifier = Modifier.padding(8.dp)
-                        )*//*
-                    }
-                }
-            }*/
+            SupperHeroScreenCall()
+//            WoofScreenCall()
+//            BasicLearningTheme()
         }
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WoofTopAppBar(modifier: Modifier = Modifier) {
-    CenterAlignedTopAppBar(
-        title = {
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Image(
-                    modifier = Modifier
-                        .size(dimensionResource(id = R.dimen.image_size))
-                        .padding(dimensionResource(id = R.dimen.padding_small)),
-                    painter = painterResource(R.drawable.woof),
+fun WoofScreenCall(){
+    WoofTheme {
+        Scaffold(
+            topBar = {
+                WoofTopAppBar()
+            }
+        ) { it ->
+            WoofScreen(it)
+        }
+    }
+}
 
-                    contentDescription = null
-                )
-                Text(
-                    text = stringResource(R.string.woof_text),
-                    style = MaterialTheme.typography.displayLarge
+@Composable
+fun SupperHeroScreenCall(){
+    SuperheroesTheme(darkTheme = false, dynamicColor = true) {
+        Scaffold(
+            topBar = {
+                SuperHeroTopBar()
+            }
+        ) { it ->
+            SuperHeroesScreen(it)
+        }
+    }
+}
+
+@Composable
+fun BasicLearningTheme(){
+    CMP_LearningTheme {
+        Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+            Surface(
+                modifier = Modifier.fillMaxSize(),
+                color = MaterialTheme.colorScheme.background
+            ) {
+                ArtSpaceScreen(innerPadding = innerPadding)
+                 BirthdayCardScreen(
+                stringResource(R.string.happy_birthday_text),
+                stringResource(R.string.from_text),
+                modifier = Modifier.padding(8.dp),
+                     innerPadding = innerPadding
                 )
             }
-        },
-        modifier = modifier
-    )
+        }
+    }
 }
+
 
 @Preview(showBackground = true)
 @Composable
