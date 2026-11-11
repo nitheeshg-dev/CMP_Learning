@@ -14,5 +14,6 @@
     <string name="round_up_tip">Round up tip?</string>
     <string name="years_old">%s years old</string>
     <string name="woof_text">Woof</string>
+    <string name="about_text">About</string>
 
 </resources>

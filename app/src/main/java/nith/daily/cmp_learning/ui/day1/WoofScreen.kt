@@ -1,16 +1,20 @@
 package nith.daily.cmp_learning.ui.day1
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -27,7 +31,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -36,7 +39,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import nith.daily.cmp_learning.R
-import kotlin.collections.get
 
 @Composable
 fun WoofScreen(innerPadding: PaddingValues) {
@@ -99,27 +101,82 @@ fun WoofScreen(innerPadding: PaddingValues) {
         }
     }
 }
+
 data class Dog(
     val name: String,
     val age: Int,
     val imageResourceId: Int,
-    val description:String
+    val description: String
 )
 
 
 @Composable
-fun DogIcon(@DrawableRes dogIcon: Int,
-            modifier: Modifier = Modifier){
+fun DogIcon(
+    @DrawableRes dogIcon: Int,
+    modifier: Modifier = Modifier
+) {
     Image(
         painter = painterResource(dogIcon),
         contentDescription = null,
         modifier = modifier
             .size(dimensionResource(R.dimen.image_size))
-            .clip(MaterialTheme.shapes.small)
-        , contentScale = ContentScale.Crop
+            .clip(MaterialTheme.shapes.small), contentScale = ContentScale.Crop
     )
 }
 
+@Composable
+fun DogInformation(modifier: Modifier, dog: Dog) {
+    Column(
+        modifier = modifier.padding(start = 10.dp)
+    ) {
+        Text(
+            text = dog.name,
+            style = MaterialTheme.typography.displayMedium,
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_small))
+        )
+        Text(
+            text = stringResource(R.string.years_old, dog.age),
+            style = MaterialTheme.typography.bodyLarge
+        )
+    }
+}
+
+@Composable
+private fun DogItemButton(
+    expanded: Boolean,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    IconButton(
+        onClick = onClick,
+        modifier = modifier
+    ) {
+        Icon(
+            imageVector = if (!expanded) Icons.Filled.KeyboardArrowDown else Icons.Filled.KeyboardArrowUp,
+            contentDescription = null
+        )
+
+    }
+}
+
+@Composable
+fun DogHobby(
+    @StringRes dogHobby: String,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+    ) {
+        Text(
+            text = stringResource(R.string.about_text),
+            style = MaterialTheme.typography.labelSmall
+        )
+        Text(
+            text = dogHobby,
+            style = MaterialTheme.typography.bodyLarge
+        )
+    }
+}
 
 @Composable
 fun DogItem(
@@ -129,7 +186,10 @@ fun DogItem(
     var expanded by remember {
         mutableStateOf(false)
     }
-
+    val color by animateColorAsState(
+        targetValue = if (expanded) MaterialTheme.colorScheme.tertiaryContainer
+        else MaterialTheme.colorScheme.primaryContainer
+    )
     Card(
         modifier = modifier
             .fillMaxWidth()
@@ -137,62 +197,41 @@ fun DogItem(
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         shape = RoundedCornerShape(bottomStart = 16.dp, topEnd = 16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant)
+            containerColor = color
+        )
     ) {
         Column(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp).animateContentSize(
+                animationSpec = spring(
+                    dampingRatio = Spring.DampingRatioNoBouncy,
+                    stiffness = Spring.StiffnessMedium
+                )
+            ).background(color = color)
         ) {
             Row(
-                verticalAlignment = Alignment.CenterVertically
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(dimensionResource(R.dimen.padding_small))
             ) {
 
                 DogIcon(dog.imageResourceId)
-
-                Spacer(modifier = Modifier.width(16.dp))
-
-                Column(
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Text(
-                        text = dog.name,
-                        style = MaterialTheme.typography.displayMedium,
-                        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_small))
-                    )
-                    Text(
-                        text = stringResource(R.string.years_old, dog.age),
-                        style = MaterialTheme.typography.bodyLarge
-                    )
-                }
-
-                IconButton(
-                    onClick = {
-                        expanded = !expanded
-                    }
-                ) {
-                    Icon(
-                        imageVector = if (expanded)
-                            Icons.Filled.KeyboardArrowUp
-                        else
-                            Icons.Filled.KeyboardArrowDown,
-                        contentDescription = if (expanded)
-                            "Collapse"
-                        else
-                            "Expand"
-                    )
-                }
-            }
-
-            if (expanded) {
-                Spacer(modifier = Modifier.height(8.dp))
-
-                Text(
-                    text = "About",
-                    style = MaterialTheme.typography.titleSmall
+                DogInformation(modifier = Modifier.weight(1f), dog)
+                Spacer(Modifier.weight(1f))
+                DogItemButton(
+                    expanded = expanded,
+                    onClick = { expanded = !expanded }
                 )
 
-                Text(
-                    text = dog.description,
-                    style = MaterialTheme.typography.bodyMedium
+            }
+            if (expanded) {
+                DogHobby(
+                    dog.description,
+                    modifier = Modifier.padding(
+                        start = dimensionResource(R.dimen.padding_medium),
+                        top = dimensionResource(R.dimen.padding_small),
+                        end = dimensionResource(R.dimen.padding_medium),
+                        bottom = dimensionResource(R.dimen.padding_medium)
+                    )
                 )
             }
         }
