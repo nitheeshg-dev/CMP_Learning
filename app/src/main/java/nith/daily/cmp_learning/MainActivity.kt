@@ -20,6 +20,8 @@ import nith.daily.cmp_learning.ui.day2.SuperHeroTopBar
 import nith.daily.cmp_learning.ui.day2.SuperHeroesScreen
 import nith.daily.cmp_learning.ui.day1.WoofScreen
 import nith.daily.cmp_learning.ui.day1.WoofTopAppBar
+import nith.daily.cmp_learning.ui.day2.AffirmationsApp
+import nith.daily.cmp_learning.ui.day2.DataSourceScreen
 import nith.daily.cmp_learning.ui.day2.DaysAppScreen
 import nith.daily.cmp_learning.ui.day2.daysTopBar
 import nith.daily.cmp_learning.ui.theme.CMP_LearningTheme
@@ -32,10 +34,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            DaysScreenCall()
+//            DaysScreenCall()
 //            SupperHeroScreenCall()
 //            WoofScreenCall()
-//            BasicLearningTheme()
+            BasicLearningTheme()
         }
     }
 }
@@ -84,7 +86,8 @@ fun SupperHeroScreenCall(){
 fun BasicLearningTheme(){
     CMP_LearningTheme {
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-            Surface(
+            AffirmationsApp(innerPadding)
+            /*Surface(
                 modifier = Modifier.fillMaxSize(),
                 color = MaterialTheme.colorScheme.background
             ) {
@@ -95,7 +98,8 @@ fun BasicLearningTheme(){
                 modifier = Modifier.padding(8.dp),
                      innerPadding = innerPadding
                 )
-            }
+
+            }*/
         }
     }
 }
