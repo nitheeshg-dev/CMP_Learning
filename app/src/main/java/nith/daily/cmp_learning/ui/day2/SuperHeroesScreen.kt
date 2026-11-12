@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -36,47 +37,45 @@ import nith.daily.cmp_learning.R
 import nith.daily.cmp_learning.data.Hero
 import nith.daily.cmp_learning.ui.theme.SuperheroesTheme
 
+val heroes = listOf(
+    Hero(
+        nameRes = R.string.hero1,
+        descriptionRes = R.string.description1,
+        imageRes = R.drawable.android_superhero1
+    ),
+    Hero(
+        nameRes = R.string.hero2,
+        descriptionRes = R.string.description2,
+        imageRes = R.drawable.android_superhero2
+    ),
+    Hero(
+        nameRes = R.string.hero3,
+        descriptionRes = R.string.description3,
+        imageRes = R.drawable.android_superhero3
+    ),
+    Hero(
+        nameRes = R.string.hero4,
+        descriptionRes = R.string.description4,
+        imageRes = R.drawable.android_superhero4
+    ),
+    Hero(
+        nameRes = R.string.hero5,
+        descriptionRes = R.string.description5,
+        imageRes = R.drawable.android_superhero5
+    ),
+    Hero(
+        nameRes = R.string.hero6,
+        descriptionRes = R.string.description6,
+        imageRes = R.drawable.android_superhero6
+    )
+)
 
 @Composable
 fun SuperHeroesScreen(innerPadding: PaddingValues) {
-
-
-    val heroes = listOf(
-        Hero(
-            nameRes = R.string.hero1,
-            descriptionRes = R.string.description1,
-            imageRes = R.drawable.android_superhero1
-        ),
-        Hero(
-            nameRes = R.string.hero2,
-            descriptionRes = R.string.description2,
-            imageRes = R.drawable.android_superhero2
-        ),
-        Hero(
-            nameRes = R.string.hero3,
-            descriptionRes = R.string.description3,
-            imageRes = R.drawable.android_superhero3
-        ),
-        Hero(
-            nameRes = R.string.hero4,
-            descriptionRes = R.string.description4,
-            imageRes = R.drawable.android_superhero4
-        ),
-        Hero(
-            nameRes = R.string.hero5,
-            descriptionRes = R.string.description5,
-            imageRes = R.drawable.android_superhero5
-        ),
-        Hero(
-            nameRes = R.string.hero6,
-            descriptionRes = R.string.description6,
-            imageRes = R.drawable.android_superhero6
-        )
-    )
     LazyColumn(contentPadding = innerPadding) {
-        items(heroes.size) {
+        items(items = heroes, key = {}) {
             HeroItem(
-                hero = heroes[it],
+                hero = it,
                 modifier = Modifier.padding(dimensionResource(R.dimen.padding_small))
             )
         }
@@ -84,11 +83,11 @@ fun SuperHeroesScreen(innerPadding: PaddingValues) {
 }
 
 @Composable
-fun HeroItem(hero:Hero, modifier: Modifier){
+fun HeroItem(hero:Hero, modifier: Modifier = Modifier){
     Card(modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)) {
-        Row(modifier = modifier.padding(16.dp),
+        Row(modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically) {
             HeroInformation(hero.nameRes, hero.descriptionRes, Modifier.weight(1f))
             Spacer(Modifier.width(16.dp))
@@ -99,7 +98,7 @@ fun HeroItem(hero:Hero, modifier: Modifier){
 
 
 @Composable
-fun HeroInformation(@StringRes name:Int, @StringRes desc:Int, modifier: Modifier){
+fun HeroInformation(@StringRes name:Int, @StringRes desc:Int, modifier: Modifier = Modifier){
     Column(modifier = modifier) {
         Text(text = stringResource(name),
             style = MaterialTheme.typography.displaySmall)
@@ -109,7 +108,7 @@ fun HeroInformation(@StringRes name:Int, @StringRes desc:Int, modifier: Modifier
 }
 
 @Composable
-fun HeroLogo(@DrawableRes heroLogo:Int, modifier: Modifier){
+fun HeroLogo(@DrawableRes heroLogo:Int, modifier: Modifier = Modifier){
     Box(modifier = modifier
         .padding(start = 16.dp)
         .size(72.dp)) {

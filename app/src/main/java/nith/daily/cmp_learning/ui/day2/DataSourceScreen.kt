@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -32,7 +33,7 @@ import nith.daily.cmp_learning.R
 import nith.daily.cmp_learning.data.Affirmation
 import nith.daily.cmp_learning.ui.theme.CMP_LearningTheme
 
-class DataSourceScreen() {
+object AffirmationDataSource {
     fun loadAffirmations(): List<Affirmation> {
         return listOf(
             Affirmation(R.string.affirmation1, R.drawable.image1),
@@ -64,7 +65,7 @@ fun AffirmationsApp(innerPadding: PaddingValues) {
             ),
     ) {
         AffirmationList(
-            affirmationList = DataSourceScreen().loadAffirmations(),
+            affirmationList = AffirmationDataSource.loadAffirmations(),
             innerPadding = innerPadding
         )
     }
@@ -73,9 +74,9 @@ fun AffirmationsApp(innerPadding: PaddingValues) {
 @Composable
 fun AffirmationList(affirmationList: List<Affirmation>, modifier: Modifier = Modifier, innerPadding: PaddingValues) {
     LazyColumn(modifier = modifier, contentPadding = innerPadding) {
-        items(affirmationList.size) { affirmation ->
+        items(items = affirmationList, key ={ }) { affirmation ->
             AffirmationCard(
-                affirmation = affirmationList[affirmation],
+                affirmation = affirmation,
                 modifier = Modifier.padding(8.dp)
             )
         }
@@ -95,7 +96,7 @@ fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier) {
                 contentScale = ContentScale.Crop
             )
             Text(
-                text = LocalContext.current.getString(affirmation.stringResourceId),
+                text = stringResource(affirmation.stringResourceId),
                 modifier = Modifier.padding(16.dp),
                 style = MaterialTheme.typography.headlineSmall
             )

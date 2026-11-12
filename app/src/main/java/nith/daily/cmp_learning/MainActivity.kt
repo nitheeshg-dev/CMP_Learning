@@ -13,10 +13,10 @@ import nith.daily.cmp_learning.ui.day1.WoofScreen
 import nith.daily.cmp_learning.ui.day1.WoofTopAppBar
 import nith.daily.cmp_learning.ui.day2.AffirmationsApp
 import nith.daily.cmp_learning.ui.day2.DaysAppScreen
+import nith.daily.cmp_learning.ui.day2.DaysTopBar
 import nith.daily.cmp_learning.ui.day2.GridViewScreen
 import nith.daily.cmp_learning.ui.day2.SuperHeroTopBar
 import nith.daily.cmp_learning.ui.day2.SuperHeroesScreen
-import nith.daily.cmp_learning.ui.day2.daysTopBar
 import nith.daily.cmp_learning.ui.theme.CMP_LearningTheme
 import nith.daily.cmp_learning.ui.theme.DaysAppTheme
 import nith.daily.cmp_learning.ui.theme.SuperheroesTheme
@@ -27,51 +27,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            GridViewScreen()
-//            DaysScreenCall()
-//            SupperHeroScreenCall()
-//            WoofScreenCall()
-//            BasicLearningTheme()
-        }
-    }
-}
-
-@Composable
-fun WoofScreenCall(){
-    WoofTheme {
-        Scaffold(
-            topBar = {
-                WoofTopAppBar()
-            }
-        ) { it ->
-            WoofScreen(it)
-        }
-    }
-}
-
-@Composable
-fun DaysScreenCall() {
-    DaysAppTheme(darkTheme = false, dynamicColor = true) {
-        Scaffold(
-            topBar = {
-                daysTopBar()
-            }
-        ) { it ->
-            DaysAppScreen(it)
-        }
-    }
-
-}
-
-@Composable
-fun SupperHeroScreenCall(){
-    SuperheroesTheme(darkTheme = false, dynamicColor = true) {
-        Scaffold(
-            topBar = {
-                SuperHeroTopBar()
-            }
-        ) { it ->
-            SuperHeroesScreen(it)
+            BasicLearningTheme()
         }
     }
 }
@@ -102,17 +58,5 @@ fun BasicLearningTheme(){
 @Preview(showBackground = true)
 @Composable
 fun CmpLearningPreview() {
-    /*CMP_LearningTheme {
-        *//*BirthdayCardScreen("Happy Birthday Nitheesh","From Emma", PaddingValues())
-        ComposeArticleScreen(innerPadding = PaddingValues())
-        TaskCompletedScreen(PaddingValues())
-        BusinessCardScreen(PaddingValues())
-        ComposeQuadrantScreen(PaddingValues())*//*
-//        TipTimeScreen(PaddingValues())
-//        ArtSpaceScreen(PaddingValues())
-//        WoofScreenChange()
-    }*/
-
-    WoofScreenCall()
-
+    BasicLearningTheme()
 }

@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -62,8 +63,8 @@ fun DaysAppScreen(innerPadding: PaddingValues) {
         modifier = Modifier.fillMaxSize(),
         contentPadding = innerPadding
     ) {
-        items(days.size) { day ->
-            DayCard(days[day])
+        items(items = days, key =  {}) { day ->
+            DayCard(day)
         }
     }
 }
@@ -128,7 +129,7 @@ fun DayCard(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun daysTopBar(modifier: Modifier = Modifier){
+fun DaysTopBar(modifier: Modifier = Modifier){
     TopAppBar(title = {
         Text(
             text = stringResource(R.string.days_header_text),
@@ -137,6 +138,7 @@ fun daysTopBar(modifier: Modifier = Modifier){
     },
         modifier = modifier)
 }
+
 @Preview(showBackground = true)
 @Composable
 fun DaysPreview() {
@@ -144,7 +146,7 @@ fun DaysPreview() {
     DaysAppTheme(darkTheme = false, dynamicColor = true) {
         Scaffold(
             topBar = {
-                daysTopBar()
+                DaysTopBar()
             }
         ) { it ->
             DaysAppScreen(it)

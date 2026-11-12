@@ -27,6 +27,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -40,9 +41,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import nith.daily.cmp_learning.R
 import nith.daily.cmp_learning.data.Dog
+import nith.daily.cmp_learning.ui.theme.WoofTheme
 
 @Composable
 fun WoofScreen(innerPadding: PaddingValues) {
@@ -256,6 +259,20 @@ fun DogItem(
                     )
                 )
             }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun WoofScreenCall(){
+    WoofTheme {
+        Scaffold(
+            topBar = {
+                WoofTopAppBar()
+            }
+        ) { it ->
+            WoofScreen(it)
         }
     }
 }

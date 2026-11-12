@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -57,8 +58,8 @@ fun GridViewScreen(modifier: Modifier= Modifier){
                 contentPadding = innerPadding
             ) {
                 val result = topics + topics
-                items(result.size) { topic ->
-                    GridCard(result[topic])
+                items(items =result, key = {}) { topic ->
+                    GridCard(topic)
                 }
             }
         }
