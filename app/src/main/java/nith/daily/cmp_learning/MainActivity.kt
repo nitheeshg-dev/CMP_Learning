@@ -9,25 +9,24 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import nith.daily.cmp_learning.ui.day1.WoofScreen
-import nith.daily.cmp_learning.ui.day1.WoofTopAppBar
 import nith.daily.cmp_learning.ui.day2.AffirmationsApp
-import nith.daily.cmp_learning.ui.day2.DaysAppScreen
-import nith.daily.cmp_learning.ui.day2.DaysTopBar
-import nith.daily.cmp_learning.ui.day2.GridViewScreen
-import nith.daily.cmp_learning.ui.day2.SuperHeroTopBar
-import nith.daily.cmp_learning.ui.day2.SuperHeroesScreen
+import nith.daily.cmp_learning.ui.day3.DessertClickerScreen
+import nith.daily.cmp_learning.ui.day3.StartedAppScreen
 import nith.daily.cmp_learning.ui.theme.CMP_LearningTheme
-import nith.daily.cmp_learning.ui.theme.DaysAppTheme
-import nith.daily.cmp_learning.ui.theme.SuperheroesTheme
-import nith.daily.cmp_learning.ui.theme.WoofTheme
+import nith.daily.cmp_learning.ui.theme.DessertClickerTheme
+import nith.daily.cmp_learning.ui.theme.UnscrambleTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            BasicLearningTheme()
+            DessertClickerTheme {
+                DessertClickerScreen()
+            }
+//            BasicLearningTheme()
+
+
         }
     }
 }
@@ -36,7 +35,8 @@ class MainActivity : ComponentActivity() {
 fun BasicLearningTheme(){
     CMP_LearningTheme {
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-            AffirmationsApp(innerPadding)
+//            AffirmationsApp(innerPadding)
+
             /*Surface(
                 modifier = Modifier.fillMaxSize(),
                 color = MaterialTheme.colorScheme.background
@@ -55,7 +55,7 @@ fun BasicLearningTheme(){
 }
 
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun CmpLearningPreview() {
     BasicLearningTheme()

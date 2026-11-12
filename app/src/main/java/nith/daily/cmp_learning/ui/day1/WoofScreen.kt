@@ -263,7 +263,7 @@ fun DogItem(
     }
 }
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun WoofScreenCall(){
     WoofTheme {

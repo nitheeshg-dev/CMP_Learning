@@ -68,7 +68,7 @@ fun GridViewScreen(modifier: Modifier= Modifier){
 }
 
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun GridPreview() {
     GridViewScreen()

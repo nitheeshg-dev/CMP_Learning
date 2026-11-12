@@ -104,7 +104,7 @@ fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier) {
     }
 }
 
-@Preview
+//@Preview
 @Composable
 private fun AffirmationCardPreview() {
     CMP_LearningTheme {

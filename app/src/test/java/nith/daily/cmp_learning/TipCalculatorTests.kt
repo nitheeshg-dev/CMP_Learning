@@ -1,6 +1,7 @@
 package nith.daily.cmp_learning
 
 import junit.framework.TestCase.assertEquals
+import nith.daily.cmp_learning.ui.day1.calculateTip
 import org.junit.Test
 import java.text.NumberFormat
 

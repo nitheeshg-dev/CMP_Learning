@@ -139,7 +139,7 @@ fun DaysTopBar(modifier: Modifier = Modifier){
         modifier = modifier)
 }
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun DaysPreview() {
 

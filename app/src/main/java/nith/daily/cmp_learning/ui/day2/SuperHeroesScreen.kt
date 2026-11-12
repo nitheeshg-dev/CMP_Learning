@@ -134,7 +134,7 @@ fun SuperHeroTopBar(modifier: Modifier = Modifier){
         modifier = modifier)
 }
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun CmpLearningPreview() {
 
