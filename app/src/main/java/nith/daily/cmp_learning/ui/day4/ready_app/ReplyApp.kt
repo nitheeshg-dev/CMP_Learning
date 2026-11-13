@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import nith.daily.cmp_learning.data.Email
 import nith.daily.cmp_learning.data.MailboxType
@@ -18,7 +19,7 @@ fun ReplyApp(windowSize: WindowWidthSizeClass,
     modifier: Modifier = Modifier,
 ) {
     val viewModel: ReplyViewModel = viewModel()
-    val replyUiState = viewModel.uiState.collectAsState().value
+    val replyUiState = viewModel.uiState.collectAsStateWithLifecycle().value
     val navigationType: ReplyNavigationType
     val contentType: ReplyContentType
     when (windowSize) {

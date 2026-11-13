@@ -26,7 +26,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,6 +38,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import nith.daily.cmp_learning.R
 import nith.daily.cmp_learning.viewmodel.GameViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -73,7 +73,7 @@ val allWords: Set<String> =
 
 @Composable
 fun StartedAppScreen(gameViewModel: GameViewModel = viewModel()) {
-    val gameUiState by gameViewModel.uiState.collectAsState()
+    val gameUiState by gameViewModel.uiState.collectAsStateWithLifecycle()
     val mediumPadding = dimensionResource(R.dimen.padding_medium)
 
     Column(
