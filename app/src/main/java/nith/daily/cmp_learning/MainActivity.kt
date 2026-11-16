@@ -5,6 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import nith.daily.cmp_learning.ui.day4.ready_app.ReplyApp
+import nith.daily.cmp_learning.ui.day6.weatherApp.PhoneNumberScreen
+import nith.daily.cmp_learning.ui.day6.weatherApp.WeatherScreen
 import nith.daily.cmp_learning.ui.theme.ReplyTheme
 
 class MainActivity : ComponentActivity() {
@@ -13,7 +15,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ReplyTheme {
-                ReplyApp()
+//                ReplyApp(windowSize = windowSize.widthSizeClass)
+                PhoneNumberScreen()
             }
         }
     }

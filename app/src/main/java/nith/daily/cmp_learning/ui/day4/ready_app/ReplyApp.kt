@@ -1,8 +1,6 @@
 package nith.daily.cmp_learning.ui.day4.ready_app
 
-import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -15,14 +13,16 @@ import nith.daily.cmp_learning.ui.utils.ReplyNavigationType
 import nith.daily.cmp_learning.ui.utils.ReplyNavigationType.*
 
 @Composable
-fun ReplyApp(windowSize: WindowWidthSizeClass,
+fun ReplyApp(/*windowSize: WindowWidthSizeClass,*/
     modifier: Modifier = Modifier,
 ) {
     val viewModel: ReplyViewModel = viewModel()
     val replyUiState = viewModel.uiState.collectAsStateWithLifecycle().value
-    val navigationType: ReplyNavigationType
-    val contentType: ReplyContentType
-    when (windowSize) {
+    var navigationType: ReplyNavigationType
+    var contentType: ReplyContentType
+    navigationType = BOTTOM_NAVIGATION
+    contentType = ReplyContentType.LIST_ONLY
+   /* when (windowSize) {
         WindowWidthSizeClass.Compact -> {
             navigationType = BOTTOM_NAVIGATION
             contentType = ReplyContentType.LIST_ONLY
@@ -39,7 +39,7 @@ fun ReplyApp(windowSize: WindowWidthSizeClass,
             navigationType = BOTTOM_NAVIGATION
             contentType = ReplyContentType.LIST_ONLY
         }
-    }
+    }*/
 
     ReplyHomeScreen(navigationType = navigationType,
         contentType,
@@ -64,8 +64,7 @@ fun ReplyApp(windowSize: WindowWidthSizeClass,
 @Preview(showBackground = true)
 @Composable
 fun PreviewDetails(){
-    ReplyTheme{
+    ReplyTheme {
         ReplyApp()
     }
-
 }
