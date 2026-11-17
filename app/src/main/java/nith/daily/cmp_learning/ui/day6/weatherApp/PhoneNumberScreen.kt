@@ -9,6 +9,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Build
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -19,8 +20,10 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
@@ -33,7 +36,8 @@ fun PhoneNumberScreen() {
     val snackbarHostState = remember { SnackbarHostState() }
     Scaffold(
         snackbarHost = {
-            SnackbarHost(hostState = snackbarHostState)
+            SnackbarHost(hostState = snackbarHostState,
+                modifier = Modifier.padding(5.dp))
         },
         floatingActionButton = {
             ExtendedFloatingActionButton(
@@ -46,7 +50,8 @@ fun PhoneNumberScreen() {
                                 message = "Snackbar",
                                 actionLabel = "Action",
                                 // Defaults to SnackbarDuration.Short
-                                duration = SnackbarDuration.Indefinite
+                                duration = SnackbarDuration.Indefinite,
+                                withDismissAction = true
                             )
                         when (result) {
                             SnackbarResult.ActionPerformed -> {
@@ -62,8 +67,30 @@ fun PhoneNumberScreen() {
         }
     ) { contentPadding ->
         val scrollSate = rememberScrollState()
-        Column(modifier = Modifier.fillMaxWidth().verticalScroll(scrollSate).statusBarsPadding()) {
-            for(i in 0 until 20){
+        Column(modifier = Modifier.padding(contentPadding).fillMaxWidth().verticalScroll(scrollSate).statusBarsPadding()) {
+            Button(onClick = {
+                    // Create a new coroutine in the event handler to show a snackbar
+                    scope.launch {
+                        val result = snackbarHostState.showSnackbar("Something happened!",
+                            actionLabel = "Action",
+                            // Defaults to SnackbarDuration.Short
+                            duration = SnackbarDuration.Short,
+                            withDismissAction = true
+                        )
+                        when (result) {
+                            SnackbarResult.ActionPerformed -> {
+                                /* Handle snackbar action performed */
+                            }
+                            SnackbarResult.Dismissed -> {
+                                /* Handle snackbar dismissed */
+                            }
+                        }
+                    }
+                }
+            ) {
+                Text("Press me")
+            }
+            for(i in 0 until 30){
                 ListItem({scrollSate.value.toFloat()}
                     , modifier = Modifier.fillMaxWidth(),
                     i

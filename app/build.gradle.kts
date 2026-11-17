@@ -7,13 +7,13 @@ plugins {
 android {
     namespace = "nith.daily.cmp_learning"
     compileSdk {
-        version = release(37)
+        version = release(36)
     }
 
     defaultConfig {
         applicationId = "nith.daily.cmp_learning"
         minSdk = 24
-        targetSdk = 37
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.navigation.compose)
 //    implementation(libs.androidx.compose.material3.window.size.classs)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -4,9 +4,15 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Scaffold
+import androidx.compose.ui.Modifier
 import nith.daily.cmp_learning.ui.day4.ready_app.ReplyApp
 import nith.daily.cmp_learning.ui.day6.weatherApp.PhoneNumberScreen
 import nith.daily.cmp_learning.ui.day6.weatherApp.WeatherScreen
+//import nith.daily.cmp_learning.ui.day7.mvvm_ui.CounterScreen
+import nith.daily.cmp_learning.ui.theme.CMP_LearningTheme
+import nith.daily.cmp_learning.ui.day7.mvi_ui.CounterScreen
 import nith.daily.cmp_learning.ui.theme.ReplyTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,6 +23,7 @@ class MainActivity : ComponentActivity() {
             ReplyTheme {
 //                ReplyApp(windowSize = windowSize.widthSizeClass)
                 PhoneNumberScreen()
+
             }
         }
     }
