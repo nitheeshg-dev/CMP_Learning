@@ -12,12 +12,13 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import nith.daily.cmp_learning.data.LoginSate
+import kotlin.time.Duration.Companion.milliseconds
 
 class LoginViewModel: ViewModel() {
     private val navigationChannel = Channel<NavigationEvent>()
     val navigationEventChannelFlow = navigationChannel.receiveAsFlow()
 
-    private val _navigationEvents = MutableSharedFlow<NavigationEvent>()
+    private val _navigationEvents = MutableSharedFlow<NavigationEvent>(replay = 3)
     val navigationEventSharedFlow = _navigationEvents.asSharedFlow()
 
     var isLoggedIn by mutableStateOf(false)
@@ -27,15 +28,25 @@ class LoginViewModel: ViewModel() {
         private set
 
     fun login(){
+        /*viewModelScope.launch {
+            repeat(1000){
+                delay(3L.milliseconds)
+                navigationChannel.send(NavigationEvent.CountEvent(it))
+            }
+        }*/
         viewModelScope.launch {
             state = state.copy(isLoading = true)
-            delay(3000L)
+            delay(3000L.milliseconds)
+//            channels
             navigationChannel.send(NavigationEvent.NavigateToProfile)
-            state = state.copy(isLoading = false)
+//            shareFlow
+//            _navigationEvents.emit(NavigationEvent.NavigateToProfile)
+            state = state.copy(isLoading = false, isLoggedIn = true)
         }
     }
 }
 
 sealed interface NavigationEvent{
     object NavigateToProfile: NavigationEvent
+    data class CountEvent(val count:Int): NavigationEvent
 }
